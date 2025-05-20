@@ -1,6 +1,8 @@
 import os
 import psycopg2
 import json
+from dotenv import load_dotenv
+load_dotenv()
 
 DB_CONFIG = {
     "database": os.getenv("DB_NAME"),
@@ -27,6 +29,7 @@ def connect_db():
         )
         return conn
     except Exception as e:
+        print(f"Error al conectar a la base de datos: {e}")
         return None
 
 def get_display_field(cursor, table):
